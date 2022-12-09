@@ -1,0 +1,5 @@
+A2D_Relay_Board				KEYWORD1
+init						KEYWORD2
+reset						KEYWORD2
+set_dig_out					KEYWORD2
+set_led						KEYWORD2
