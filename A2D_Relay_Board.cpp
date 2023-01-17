@@ -1,4 +1,4 @@
-/* A2D Electronics 64 Channel Data Acquisition Module Library
+/* A2D Electronics Relay Board Module Library
  * Written By: Micah Black
  * Date: Jan 22, 2021
  *
@@ -45,6 +45,11 @@ void A2D_Relay_Board::set_dig_out(uint8_t channel, bool output_val)
 	
 	if (channel == 0) digitalWrite(CH0_PIN, output_val);
 	if (channel == 1) digitalWrite(CH1_PIN, output_val);
+}
+
+uint8_t A2D_Relay_Board::get_num_channels()
+{
+	return NUM_CHANNELS;
 }
 
 bool A2D_Relay_Board::_valid_channel(uint8_t channel)

@@ -90,6 +90,11 @@ void loop() {
     relay_board.set_dig_out(channel_num, value_bool);
   }
   
+  //INSTR:DAQ:GET:NCHS to get the number of channels that the board has.
+  else if (CMDIS(command, "INSTR:DAQ:GET:NCHS")){
+    serial.println(relay_board.get_num_channels())
+  }
+  
   //INSTR:DAQ:SET:LED X VAL  //X is placeholder for channel
   //can be anything, but we need it for the basic parsing currently in use
   //VAL is boolean 0 or 1

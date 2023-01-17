@@ -24,6 +24,7 @@ class A2D_Relay_Board
 		
 		//Interface
 		void set_dig_out(uint8_t channel, bool output_val);
+		uint8_t get_num_channels();
 		void set_led(bool state);
 		
 	private:

@@ -3,3 +3,4 @@ init						KEYWORD2
 reset						KEYWORD2
 set_dig_out					KEYWORD2
 set_led						KEYWORD2
+get_num_channels			KEYWORD2
