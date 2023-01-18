@@ -5,6 +5,7 @@ PURPOSE: This example implements some SCPI commands
         (that don't completely follow the susbystem style standard)
         to communicate with the relay board.
 CHANGELOG:
+	Jan 17, 2023: 3 channels instead of 2 and using an I2C GPIO Expander instead of using Arduino pins directly (permitting use of isolating the communication)
 
 */
 
@@ -92,7 +93,7 @@ void loop() {
   
   //INSTR:DAQ:GET:NCHS to get the number of channels that the board has.
   else if (CMDIS(command, "INSTR:DAQ:GET:NCHS")){
-    serial.println(relay_board.get_num_channels())
+    Serial.println(relay_board.get_num_channels());
   }
   
   //INSTR:DAQ:SET:LED X VAL  //X is placeholder for channel

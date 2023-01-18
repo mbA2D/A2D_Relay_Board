@@ -63,7 +63,7 @@ void A2D_Relay_Board::set_dig_out(uint8_t channel, bool output_val)
 	//check valid channel
 	if (!_valid_channel(channel)) return;
 	
-	bool val_to_write = TCA9539_PIN_OUT_LOW;
+	TCA9539_pin_val_t val_to_write = TCA9539_PIN_OUT_LOW;
 	if (output_val) val_to_write = TCA9539_PIN_OUT_HIGH;
 	
 	if (channel == 0) io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH0_PIN, val_to_write);
