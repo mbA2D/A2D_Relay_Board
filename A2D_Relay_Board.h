@@ -28,6 +28,7 @@ class A2D_Relay_Board
 		void set_dig_out(uint8_t channel, bool output_val);
 		uint8_t get_num_channels();
 		void set_led(bool state);
+		void set_i2c_expander_addr(uint8_t addr);
 		
 	private:
 		//************METHODS****************

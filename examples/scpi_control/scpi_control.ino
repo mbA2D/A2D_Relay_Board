@@ -101,6 +101,11 @@ void loop() {
   else if (CMDIS(command, "INSTR:DAQ:SET:LED")){
     relay_board.set_led(value_bool);
   }
+  
+  //INSTR:DAQ:SET:ADDR X ADDR  //X is placeholder for channel, ADDR is 7-bit right-justified address
+  else if (CMDIS(command, "INSTR:DAQ:SET:ADDR")){
+    relay_board.set_i2c_expander_addr(uint8_t(value_int));
+  }
 }
 
 void parse_serial(char ser_buf[], char command[], uint8_t *channel_num, bool *value_bool, int16_t *value_int){

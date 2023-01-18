@@ -20,34 +20,42 @@ A2D_Relay_Board::A2D_Relay_Board()
 void A2D_Relay_Board::init()
 {
 	io = new TCA9539();
-	io->TCA9539_init(A2D_RELAY_BOARD_IO_EXP_ADDR);
+	io->TCA9539_init(A2D_RELAY_BOARD_IO_EXP_ADDR_DEFAULT);
 	
+	reset();
+}
+
+void A2D_Relay_Board::set_i2c_expander_addr(uint8_t addr)
+{
+	if (addr > A2D_RELAY_BOARD_IO_EXP_ADDR_MIN && addr < A2D_RELAY_BOARD_IO_EXP_ADDR_MAX)
+	io->TCA9539_init(addr);
+
 	reset();
 }
 
 void A2D_Relay_Board::reset()
 {
 	//LED
-	pinMode(LED_PIN, OUTPUT);
-	digitalWrite(LED_PIN, LOW);
+	pinMode(A2D_RELAY_BOARD_LED_PIN, OUTPUT);
+	digitalWrite(A2D_RELAY_BOARD_LED_PIN, LOW);
 	
 	io->TCA9539_init();
 	
 	//Channels off
-	io->TCA9539_set_pin_val(CH0_PIN, TCA9539_PIN_OUT_LOW);
-	io->TCA9539_set_pin_val(CH1_PIN, TCA9539_PIN_OUT_LOW);
-	io->TCA9539_set_pin_val(CH2_PIN, TCA9539_PIN_OUT_LOW);
+	io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH0_PIN, TCA9539_PIN_OUT_LOW);
+	io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH1_PIN, TCA9539_PIN_OUT_LOW);
+	io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH2_PIN, TCA9539_PIN_OUT_LOW);
 	
 	//Channels pin Mode
-	io->TCA9539_set_dir(CH0_PIN, TCA9539_PIN_DIR_OUTPUT);
-	io->TCA9539_set_dir(CH1_PIN, TCA9539_PIN_DIR_OUTPUT);
-	io->TCA9539_set_dir(CH2_PIN, TCA9539_PIN_DIR_OUTPUT);
+	io->TCA9539_set_dir(A2D_RELAY_BOARD_CH0_PIN, TCA9539_PIN_DIR_OUTPUT);
+	io->TCA9539_set_dir(A2D_RELAY_BOARD_CH1_PIN, TCA9539_PIN_DIR_OUTPUT);
+	io->TCA9539_set_dir(A2D_RELAY_BOARD_CH2_PIN, TCA9539_PIN_DIR_OUTPUT);
 	
 }
 
 void A2D_Relay_Board::set_led(bool state)
 {
-	digitalWrite(LED_PIN, state);
+	digitalWrite(A2D_RELAY_BOARD_LED_PIN, state);
 }
 
 void A2D_Relay_Board::set_dig_out(uint8_t channel, bool output_val)
@@ -58,9 +66,9 @@ void A2D_Relay_Board::set_dig_out(uint8_t channel, bool output_val)
 	bool val_to_write = TCA9539_PIN_OUT_LOW;
 	if (output_val) val_to_write = TCA9539_PIN_OUT_HIGH;
 	
-	if (channel == 0) io->TCA9539_set_pin_val(CH0_PIN, val_to_write);
-	if (channel == 1) io->TCA9539_set_pin_val(CH1_PIN, val_to_write);
-	if (channel == 2) io->TCA9539_set_pin_val(CH2_PIN, val_to_write);
+	if (channel == 0) io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH0_PIN, val_to_write);
+	if (channel == 1) io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH1_PIN, val_to_write);
+	if (channel == 2) io->TCA9539_set_pin_val(A2D_RELAY_BOARD_CH2_PIN, val_to_write);
 }
 
 uint8_t A2D_Relay_Board::get_num_channels()
