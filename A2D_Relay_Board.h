@@ -7,11 +7,13 @@
  */
 
 
-#include "Arduino.h"
-#include <A2D_Relay_Board_V1.0.h> //header file with pins, etc
-
 #ifndef A2D_Relay_Board_h
 #define A2D_Relay_Board_h
+
+#include "Arduino.h"
+#include <A2D_Relay_Board_V1.0.h> //header file with pins, etc
+#include <Wire.h>
+#include <TCA9539.h>
 
 class A2D_Relay_Board
 {
@@ -30,7 +32,9 @@ class A2D_Relay_Board
 	private:
 		//************METHODS****************
 		bool _valid_channel(uint8_t channel);
-
+		
+		//*********VARIABLES/CLASSES*********
+		TCA9539 *io;
 };
 
 #endif
