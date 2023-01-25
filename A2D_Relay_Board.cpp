@@ -12,9 +12,10 @@
 //constructor and initialization list
 A2D_Relay_Board::A2D_Relay_Board()
 {	
-	if (TWCR == 0) Wire.begin();
-	
-	
+	if (TWCR == 0)
+	{
+		Wire.begin();
+	}
 }
 
 void A2D_Relay_Board::init()
@@ -27,9 +28,10 @@ void A2D_Relay_Board::init()
 
 void A2D_Relay_Board::set_i2c_expander_addr(uint8_t addr)
 {
-	if (addr > A2D_RELAY_BOARD_IO_EXP_ADDR_MIN && addr < A2D_RELAY_BOARD_IO_EXP_ADDR_MAX)
-	io->TCA9539_init(addr);
-
+	if (addr >= A2D_RELAY_BOARD_IO_EXP_ADDR_MIN && addr <= A2D_RELAY_BOARD_IO_EXP_ADDR_MAX)
+	{
+		io->TCA9539_init(addr);
+	}
 	reset();
 }
 
@@ -80,8 +82,3 @@ bool A2D_Relay_Board::_valid_channel(uint8_t channel)
 {
 	return (channel < A2D_RELAY_BOARD_NUM_CHANNELS);
 }
-
-//TODO - add a command to change the I2C Address of the IO expander.
-//I don't want to have to recompile firmware whenever a jumper is changed.
-//change I2C addr, reset expander and re-initialize
-
