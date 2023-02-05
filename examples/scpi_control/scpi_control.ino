@@ -14,6 +14,7 @@ CHANGELOG:
 #define MANUFACTURER  ("A2D Electronics")
 #define DESCRIPTION ("Relay Board")
 #define VERSION     ("V1.0.0")
+#define SERIAL_NUM     ("00001")
 
 //SERIAL DEFINES
 #define BAUDRATE    57600
@@ -72,7 +73,9 @@ void loop() {
     Serial.print(" ");
     Serial.print(DESCRIPTION);
     Serial.print(" ");
-    Serial.println(VERSION);
+    Serial.print(VERSION);
+    Serial.print(",");
+    Serial.println(SERIAL_NUM);
     Serial.flush();
   }
   
@@ -92,7 +95,7 @@ void loop() {
   }
   
   //INSTR:DAQ:GET:NCHS to get the number of channels that the board has.
-  else if (CMDIS(command, "INSTR:DAQ:GET:NCHS")){
+  else if (CMDIS(command, "INSTR:DAQ:GET:NCHS?")){
     Serial.println(relay_board.get_num_channels());
   }
   
